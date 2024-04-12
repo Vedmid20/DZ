@@ -35,41 +35,43 @@ class Student(SchoolMember):
 
 
 lst = []
+try:
+    print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Вид заповнення {'-' * 5}")
+    print('1.Введення зарплати власноруч\n2.Введення зарплати через рандом')
+    choiceT = int(input('Введіть тип заповнення зарплати вчителя: '))
+    print('1.Введення балів власноруч\n2.Введення балів через рандом')
+    choiceS = int(input('Введіть тип заповнення балів студента: '))
 
-print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Вид заповнення {'-' * 5}")
-print('1.Введення зарплати власноруч\n2.Введення зарплати через рандом')
-choiceT = int(input('Введіть тип заповнення зарплати вчителя: '))
-print('1.Введення балів власноруч\n2.Введення балів через рандом')
-choiceS = int(input('Введіть тип заповнення балів студента: '))
+    if choiceT == 1:
+        for i in range(2):
+            print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про вчителя {'-' * 5}")
+            lst.append(Teacher(name=str(input('Введіть імя вчителя: ')), lastname=str(input('Введіть прізвище вчителя: ')),
+                               surname=str(input('Введіть по батькові вчителя: ')), salary=int(input('Введіть зарплату вчителя: '))))
+    elif choiceT == 2:
+        for i in range(2):
+            print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про вчителя {'-' * 5}")
+            lst.append(Teacher(name=str(input('Введіть імя вчителя: ')), lastname=str(input('Введіть прізвище вчителя: ')),
+                               surname=str(input('Введіть по батькові вчителя: ')), salary=random.randint(8000, 15000)))
+    else:
+        print(Fore.LIGHTRED_EX + 'Помилка: ', 'Ви допустили помилку в виборі операції')
 
-if choiceT == 1:
-    for i in range(2):
-        print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про вчителя {'-' * 5}")
-        lst.append(Teacher(name=str(input('Введіть імя вчителя: ')), lastname=str(input('Введіть прізвище вчителя: ')),
-                           surname=str(input('Введіть по батькові вчителя: ')), salary=int(input('Введіть зарплату вчителя: '))))
-elif choiceT == 2:
-    for i in range(2):
-        print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про вчителя {'-' * 5}")
-        lst.append(Teacher(name=str(input('Введіть імя вчителя: ')), lastname=str(input('Введіть прізвище вчителя: ')),
-                           surname=str(input('Введіть по батькові вчителя: ')), salary=random.randint(8000, 15000)))
-else:
-    print(Fore.LIGHTRED_EX + 'Помилка: ', 'Ви допустили помилку в виборі операції')
+    if choiceS == 1:
+        for i in range(2):
+            print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про студента {'-' * 5}")
+            lst.append(Student(name=str(input('Введіть імя студента: ')), lastname=str(input('Введіть прізвище студента: ')),
+                               mark1=int(input('Введіть перший бал: ')), mark2=int(input('Введіть другий бал: ')), mark3=int(input('Введіть третій бал: ')),))
 
-if choiceS == 1:
-    for i in range(2):
-        print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про студента {'-' * 5}")
-        lst.append(Student(name=str(input('Введіть імя студента: ')), lastname=str(input('Введіть прізвище студента: ')),
-                           mark1=int(input('Введіть перший бал: ')), mark2=int(input('Введіть другий бал: ')), mark3=int(input('Введіть третій бал: ')),))
+    elif choiceS == 2:
+        for i in range(2):
+            print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про студента {'-' * 5}")
+            lst.append(Student(name=str(input('Введіть імя студента: ')), lastname=str(input('Введіть прізвище студента: ')),
+                               mark1=random.randint(1, 12), mark2=random.randint(1, 12), mark3=random.randint(1, 12),))
+    else:
+        print(Fore.LIGHTRED_EX + 'Помилка: ', 'Ви допустили помилку в виборі операції')
 
-elif choiceS == 2:
-    for i in range(2):
-        print(Fore.LIGHTGREEN_EX + f"{'-' * 5} Дані про студента {'-' * 5}")
-        lst.append(Student(name=str(input('Введіть імя студента: ')), lastname=str(input('Введіть прізвище студента: ')),
-                           mark1=random.randint(1, 12), mark2=random.randint(1, 12), mark3=random.randint(1, 12),))
-else:
-    print(Fore.LIGHTRED_EX + 'Помилка: ', 'Ви допустили помилку в виборі операції')
-
-print(Fore.LIGHTGREEN_EX + f'{"-"*5} Загальні дані {"-"*5}')
-for i in lst:
-    print(Fore.LIGHTYELLOW_EX + '- '*13)
-    print(i.tell())
+    print(Fore.LIGHTGREEN_EX + f'{"-"*5} Загальні дані {"-"*5}')
+    for i in lst:
+        print(Fore.LIGHTYELLOW_EX + '- '*13)
+        print(i.tell())
+except ValueError:
+    print(Fore.LIGHTRED_EX + 'Виникла помилка')
